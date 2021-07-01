@@ -1,0 +1,96 @@
+Jorge Lima - 23 de Abril de 2021
+
+Geral
+	Ideias gerais da implementação do projeto Football Manager de POO.
+
+
+Classe Jogador:
+
+	Variaveis de instancia:
+
+		name -> Nome do jogador
+		number -> Nº do jogador
+
+		attributes -> Array com os atributos dos jogadores
+		           -> Cada posição do array vai conter um atributo especifico
+		           -> Vai ser acesado com static int's
+
+        overall -> Numero que define a qualidade do jogador
+        		-> Dependendo da posição diferentes atributos são usados
+
+		position -> Posição do jogador neste momento
+		         -> Normalmente Iniciado como Reserva
+		         -> A mudança de posição implica o novo calculo do overall
+
+    Metodos a ser implimentados:
+
+    	Getters e Setters
+    	Clone, toString e Equals
+
+    	Calcular o overral de um jogador dado a sua posição
+
+    Comentarios:
+
+    	Posiveis Posições: GoalKepper, Defenders, Full Backs, Player.Midfielder, Winger, Striker, Substitute, Reserve
+
+    	Atributos:
+    		Temos 8 conjuntos de stributos: todos os jogadores contém todos estes atributos mas apenas vão contar aqueles que representarem a posição atual do jogador
+
+    		Comum: Composure, Concentration, Determination, TeamWork, Technique
+
+    		GoalKepper: Positioning, Area Command, Throwing, Kicking, Reflexes, OneOnOnes
+
+    		Defender: Marking, Tackling, *Positioning, Strength, Heading, Bravery,
+
+    		Full Backs: Crossing, Pace, Stamina, *Tackling, Passing, OffTheBallPlay 
+
+    		Player.Midfielder: *Passing, *OffTheBallPlay, Vision, *Stamina, LongShots, Anticipation
+
+    		Winger: *Pace, Acceleration, Agility, Dribbling, *Passing, Flair
+
+    		Striker: Finishing, FirstTouch, *Positioning, *Dribbling, *Pace, *Heading
+
+            Outras: Freekicks, Penalties, Corners
+
+Classe Match.MatchDay:
+
+	Variaveis de instancia:
+
+		homeTeam -> Equipa da casa (Só os 11 jogadores)
+		AwayTeam -> Equipa visitante (Só os 11 jogadores)
+
+		homeGoals
+		awayGoals
+
+		minutes
+		extraTime
+
+    Metodos a ser implimentados:
+
+    	Getters e Setters
+    	Clone, toString e Equals
+
+    	A ver ...
+
+    Comentarios:
+
+    	Um jogo tem 90 minutos mais o tempo extra
+    	Cada minuto verifica-se quem tem a posse de bola cuja probabilidade é dada pela qualidade da equipa
+    	Jogo = [Moments]
+    	Moments = [Match.Play]
+        Quem tem a posse de bola pode fazer uma jogada
+
+        Numa jogada acontece:
+        Shot -> Goal -> VAR
+             -> Missed Shot
+             -> Intersection -> Counter Attack
+                             -> Foul -> Freeckick
+                                     -> Penalty
+                             -> Corner
+                             -> Nothing
+
+        Cross -> Header -> (same as a shot)
+        Fail -> Attacking Foul
+             -> Outside(fora-de-jogo)
+             -> CounterAtack
+             -> Nothing
